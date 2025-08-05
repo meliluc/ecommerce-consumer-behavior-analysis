@@ -38,22 +38,22 @@ It was built with a fully normalized dataset in Excel, custom KPIs using DAX, an
 ## 📸 Dashboard Preview
 
 ### 🧭 Cover Page
-![Dashboard Cover](assets/dashboard-cover.png)
+![Dashboard Cover](assets/dashboard-cover.png.jpg)
 
 ### 👥 Customer Profile
-![Customer Profile](assets/customer-profile.png)
+![Customer Profile](assets/customer-profile.jpg)
 
 ### 🛒 Purchase Patterns
-![Purchase Patterns](assets/purchase-patterns.png)
+![Purchase Patterns](assets/purchase-patterns.jpg)
 
 ### 📲 Digital Engagement
-![Digital Engagement](assets/digital-engagement.png)
+![Digital Engagement](assets/digital-engagement.jpg)
 
 ---
 
 ## 📎 Portfolio Link
 
-- [🔗 View PDF & Power BI on Google Drive](https://drive.google.com/file/d/1C_-P62q6jKNuokIZLGhFoteir2ee4XJS/view?usp=drive_link)
+- [🔗 View Power BI Dashboard, Database & PDF on Google Drive](https://drive.google.com/drive/folders/1AWurUWZGMncOpsBbqj6KEidqW3uA22Se)
 
 ---
 

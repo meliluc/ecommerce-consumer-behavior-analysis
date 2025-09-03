@@ -1,170 +1,193 @@
-# 📦 Ecommerce Consumer Behavior Analysis
+# 📦 Análisis del Comportamiento del Consumidor en E-commerce
 
-Final project for the Data Analytics course (CoderHouse), focused on analyzing consumer loyalty and digital interaction in e-commerce using Power BI.
-
----
-
-## 📊 Project Summary
-
-This project explores:
-- Demographic segmentation of customers
-- Patterns of purchase behavior across loyalty levels
-- Weekday trends, channel and payment preferences
-- Digital interaction: ads engagement, social media influence, research time
-
-It was built with a fully normalized dataset in Excel, custom KPIs using DAX, and a dashboard structured for business storytelling.
+Proyecto final para el curso de Data Analytics (CoderHouse), enfocado en analizar la lealtad del consumidor y la interacción digital en e-commerce utilizando Power BI.
 
 ---
 
-## 🛠️ Tools Used
+## 📊 Resumen del Proyecto
 
-- **Power BI** (interactive dashboard, custom DAX measures, slicers, bookmarks)
-- **Excel** (normalized relational dataset, dimension/fact model)
-- **SQL & DAX** (aggregations, KPIs, time intelligence, logic)
+Este proyecto explora:
+- Segmentación demográfica de clientes  
+- Patrones de comportamiento de compra según nivel de lealtad  
+- Tendencias por día de la semana, canales y métodos de pago  
+- Interacción digital: engagement con anuncios, influencia de redes sociales, tiempo de investigación  
 
----
+Fue construido con un dataset completamente normalizado en Excel, KPIs personalizados con DAX y un dashboard estructurado para storytelling de negocio.
 
-## 📂 Files
-
-| File Name | Description |
-|----------|-------------|
-| `Project DOC_Ecommerce Consumer Behavior Analysis.pdf` | Full project report & documentation |
-| `Dashboard Power BI_Ecommerce Consumer Behavior Analysis.pbix` | Power BI dashboard (interactive) |
-| `Dataset_Ecommerce Consumer Behavior Analysis.xlsx` | Cleaned and normalized dataset |
-| `/assets/*.png` | Visuals of the dashboard pages |
+📄 **[Ver Documentación del Proyecto en PDF](https://drive.google.com/file/d/1sWJNvZfS4sjSl2tlqiglbzCxuXE6Q1DS/view?usp=drive_link)**  
 
 ---
 
-### 🔧 Data Normalization
+## 🛠️ Herramientas Utilizadas
 
-The original dataset contained redundant and denormalized structures, which could hinder performance and flexibility when building a relational data model. Therefore, a thorough normalization process was performed, resulting in a cleaner, more structured dataset.
-
-Key steps taken in the normalization:
-
-* **Splitting large tables**: The original dataset had multiple attributes grouped into a single table (e.g., client details, purchase records, product info). These were separated into distinct entities:
-
-  * `Clients`: Contains unique customer identifiers and demographic information.
-  * `Purchases`: Captures each transaction with purchase-specific details.
-  * `Products` / `Purchase Categories`: Includes item categories, subcategories, and pricing.
-  * `Interactions`: Captures engagement-related metrics (ads, satisfaction, research time).
-* **Eliminating repetition**: Repeated values such as gender, category names, payment methods, and countries were abstracted into dimension tables.
-* **Creating relationships**: Primary and foreign keys were defined (e.g., Customer\_ID, Product\_ID) to support referential integrity between tables.
-* **Date handling**: A separate **calendar table** was created using Power Query to ensure proper handling of time-based analysis (by day, month, quarter, year, etc.), which is fundamental for dynamic filtering and historical KPIs.
-
-This normalization enhances data integrity, improves performance within Power BI, and enables more accurate visual exploration and filtering through relationships defined in the data model.
+- **Power BI** (dashboard interactivo, medidas personalizadas en DAX, slicers, bookmarks)  
+- **Excel** (dataset normalizado y relacional, modelo de hechos y dimensiones)  
+- **SQL & DAX** (agregaciones, KPIs, time intelligence, lógica)  
 
 ---
 
-### 🧹 Data Preparation & Transformation Highlights
+## 📂 Archivos
 
-Several preprocessing and modeling tasks were carried out to ensure better visualization and analytical capabilities in Power BI. Below are the main transformations and decisions applied:
-
-#### ✅ Filters for dynamic reading
-
-* **Gender**: The original dataset included 8 gender categories. For clarity and usability, we consolidated them into three key groups: *Female*, *Male*, and *Other/LGBTQ+*. This grouping improves readability while preserving inclusion.
-* **Age**: Originally provided as a single integer value, age was transformed into **age ranges** for more practical filtering. Additionally, a **tooltip** was created to display detailed age information when hovering over the range chart.
-* **Location**: Since the original field contained city-level data, we first derived **country** and then grouped by **continent** in the dashboard to facilitate macro-level analysis aligned with the project’s objective.
-* **Loyalty Level**: We introduced a user-friendly loyalty segmentation from 1 to 5 and labeled each segment accordingly (*e.g., 1 - Low, 5 - High*) to allow easier reading and filtering.
-* **Month Filter & Reset Shortcut**: A slicer by month was added for temporal insights, and a *"Clear Filters"* button allows the user to reset the view and begin a new reading path.
+| Nombre del Archivo | Descripción |
+|-------------------|-------------|
+| `Project DOC_Ecommerce Consumer Behavior Analysis.pdf` | Reporte completo y documentación del proyecto |
+| `Dashboard Power BI_Ecommerce Consumer Behavior Analysis.pbix` | Dashboard interactivo en Power BI |
+| `Dataset_Ecommerce Consumer Behavior Analysis.xlsx` | Dataset limpio y normalizado |
+| `/assets/*.png` | Visuales de las páginas del dashboard |
 
 ---
 
-#### 📦 Product Categorization
+### 🔧 Normalización de Datos
 
-* The original product category list was too granular, making the visuals cluttered. To address this:
+El dataset original contenía estructuras redundantes y desnormalizadas, lo cual podía afectar el rendimiento y la flexibilidad al construir un modelo de datos relacional. Por ello, se realizó un proceso de normalización completo, obteniendo un dataset más limpio y estructurado.
 
-  * A **macro-category** column was created grouping original categories into broader segments (*e.g., “Home”, “Fashion”, “Technology”*).
-  * A **tooltip** was used to allow users to access the detailed (micro) categories by hovering over the macro view, preserving both detail and clarity.
+Principales pasos realizados:
 
-#### 📊 Enhanced navigation & layout
+* **División de tablas grandes**: El dataset original agrupaba atributos diversos en una sola tabla (ej: detalles del cliente, registros de compra, info de productos). Se dividió en entidades separadas:
+  * `Clientes`: identificadores únicos y datos demográficos.  
+  * `Compras`: cada transacción con detalles específicos.  
+  * `Productos` / `Categorías de Compra`: categorías, subcategorías y precios.  
+  * `Interacciones`: métricas de engagement (anuncios, satisfacción, tiempo de investigación).  
+* **Eliminación de repeticiones**: Valores repetidos como género, nombres de categoría, métodos de pago y países fueron extraídos a tablas de dimensión.  
+* **Creación de relaciones**: Se definieron claves primarias y foráneas (ej: Customer_ID, Product_ID) para garantizar la integridad referencial.  
+* **Manejo de fechas**: Se creó una **tabla calendario** en Power Query para un manejo adecuado del análisis temporal (día, mes, trimestre, año, etc.), fundamental para KPIs dinámicos.  
 
-* A **navigation menu** was placed at the top of each page, ensuring consistent access to every section of the report.
-* Layouts maintain visual consistency across pages to simplify user interaction with filters and visuals.
-* Each page was designed with clear KPIs and concise charts, optimized through **color gradients** (e.g., from pink to green in purchase volume) and distinct coloring by payment method or engagement type.
+Esta normalización mejora la integridad de los datos, el rendimiento en Power BI y permite una exploración visual más precisa mediante relaciones en el modelo de datos.
 
-#### 🧠 Tooltip Implementation
-
-* **Tooltip #1**: Linked to the Age Range chart, this view reveals individual age values within each range for more detailed understanding.
-* **Tooltip #2**: Used in the Purchase by Category chart to show all micro-categories, resolving issues caused by overloading the main chart with too many categories.
-
----
-
-### 🖼️ Dashboard Overview
-
-Below you can find an overview of the dashboard visuals.  
-For a full preview, access the complete PDF version:
-
-📄 **[View Dashboard Preview (PDF)](https://drive.google.com/file/d/1XS3hGomkOAfIDBgiUbECpNmpuo5puQKS/view?usp=sharing)**  
-
-
-#### 👤 Customer Profile Page
-Focuses on understanding who the buyers are based on age, gender, location, and loyalty.
+🧿 **[Ver Dataset normalizado](https://docs.google.com/spreadsheets/d/1vLMK2MhfSIqIO2TF7NGt0KCjpOP-koZQ/edit?usp=drive_link&ouid=118301805959079266186&rtpof=true&sd=true)**  
 
 ---
 
-## 📸 Dashboard Previews
+### 🧹 Preparación & Transformación de Datos
 
-### 🧭 Cover Page
-![Dashboard Cover](assets/dashboard-cover.jpg)
+Se realizaron varias tareas de preprocesamiento y modelado para optimizar la visualización y análisis en Power BI. Algunas decisiones principales:
 
-### 👥 Customer Profile
-![Customer Profile](assets/customer-profile.jpg)
+#### ✅ Filtros para lectura dinámica
 
-### 🛒 Purchase Patterns
-![Purchase Patterns](assets/purchase-patterns.jpg)
-
-### 📲 Digital Engagement
-![Digital Engagement](assets/digital-engagement.jpg)
+* **Género**: El dataset original incluía 8 categorías. Se consolidaron en 3 grupos clave: *Femenino*, *Masculino* y *Otro/LGBTQ+*.  
+* **Edad**: El valor original era un número entero. Se transformó en **rangos etarios** y se agregó un **tooltip** para mostrar la edad exacta al pasar el cursor.  
+* **Ubicación**: A partir de ciudades, se derivó **país** y luego se agruparon en **continentes** para un análisis macro.  
+* **Nivel de lealtad**: Se creó una segmentación del 1 al 5 con etiquetas descriptivas (*ej: 1 - Bajo, 5 - Alto*).  
+* **Filtro de Mes & Botón Reset**: Se añadió un slicer mensual y un botón *"Limpiar Filtros"* para reiniciar la vista.  
 
 ---
 
-### 📊 Key Metrics
+#### 📦 Categorización de Productos
 
-- 🎯 Total Purchases
-- 🛒 Average Ticket Size
-- 📅 Day with Most Purchases
-- 💳 Top Payment Methods
-- 📈 Engagement Level Score
-- 🎯 Loyalty Level Distribution
+* La lista original era demasiado granular. Para simplificar:
+  * Se creó una columna de **macro-categorías** (ej: “Hogar”, “Moda”, “Tecnología”).  
+  * Se agregó un **tooltip** que muestra las micro-categorías al pasar el cursor, manteniendo detalle sin sobrecargar la visualización.  
 
 ---
 
-## 📎 Portfolio Link
+#### 📊 Navegación & Layout
 
-- [🔗 View PDF & Power BI on Google Drive](https://drive.google.com/file/d/1C_-P62q6jKNuokIZLGhFoteir2ee4XJS/view?usp=drive_link)
-
----
-
-## 📌 Key Insights
-
-- Most purchases come from mid-loyalty customers (level 3)
-- Loyal customers are more consistent but spend slightly less overall
-- Social media and ad engagement strongly influence purchase volume in mid-loyalty segments
-- Most frequent buyers are aged 36–45 with balanced gender distribution
+* Se diseñó un **menú de navegación** en la parte superior de cada página.  
+* Se mantuvo consistencia visual en layouts y colores.  
+* Cada página incluye KPIs claros y gráficos concisos, con **gradientes de color** (ej: rosa a verde en volumen de compras) y diferenciación por método de pago o tipo de engagement.  
 
 ---
 
-## 🔮 Future Work
+#### 🧠 Implementación de Tooltips
 
-- Predictive model for loyalty segmentation using machine learning
-- Detailed analysis by product subcategories
-- Campaign-level performance tracking and A/B testing
-- Recommendations to improve customer retention and personalization
+* **Tooltip #1**: En el gráfico de Rango Etario, muestra edades individuales dentro de cada rango.  
+* **Tooltip #2**: En el gráfico de Compras por Categoría, despliega micro-categorías.  
 
 ---
 
-### ⚠️ Limitations
+### 🖼️ Vista General del Dashboard
 
-- The dataset contains simulated/aggregated data and may not reflect real-world behavior with full accuracy.
-- The engagement metrics are self-reported, not tracked behaviorally.
-- Some features had missing or ambiguous values, which required generalization (e.g., gender or location grouping).
+Aquí un resumen visual del dashboard.  
+Para la versión completa:  
 
+🧿 **[Ver Dashboard en PDF](https://drive.google.com/file/d/1XS3hGomkOAfIDBgiUbECpNmpuo5puQKS/view?usp=sharing)**  
+🧿 **[Descargar Dashboard en PBIX](https://drive.google.com/file/d/1jIYLcaLyU8n0Zk_ORDWo9eNZWe1Ttg0T/view?usp=drive_link)**  
 
-⭐ *Thanks for visiting! Feel free to explore the dashboard and reach out for feedback or collaboration.*
+---
 
+### 🎥 Vista en Acción
+![Uso del Dashboard](assets/portfolio_demo.gif)
 
-### 📚 References
+---
 
-- Dataset provided by XYZ Ecommerce (or Kaggle, etc.)
-- Power BI Calendar table logic from official Microsoft Docs.
-- Icons used from [Flaticon.com](https://www.flaticon.com)
+## 📸 Screenshots
+
+### 🧭 Portada
+![Dashboard Cover](assets/portada.jpg)
+
+### 👥 Perfil del Cliente
+![Customer Profile](assets/perfil_cliente.jpg)
+
+### 🛒 Comportamiento de Compra
+![Purchase Patterns](assets/comportamiento_compra.jpg)
+
+### 📲 Interacciones Digitales
+![Digital Engagement](assets/interacciones.jpg)
+
+---
+
+### 📊 Métricas Clave
+
+- 🎯 Compras Totales  
+- 🛒 Ticket Promedio  
+- 📅 Día con Más Compras  
+- 💳 Métodos de Pago Principales  
+- 📈 Nivel de Engagement  
+- 🎯 Distribución por Nivel de Lealtad  
+
+---
+
+## 📎 Link al Portafolio
+
+🧿 **[Ver PDF, Dataset & Power BI en Google Drive](https://drive.google.com/file/d/1C_-P62q6jKNuokIZLGhFoteir2ee4XJS/view?usp=drive_link)**
+
+---
+
+## 📌 Insights Clave
+
+- La mayoría de las compras provienen de clientes con lealtad media (nivel 3).  
+- Los clientes más leales son más consistentes pero gastan ligeramente menos en total.  
+- El engagement en redes sociales y anuncios influye fuertemente en clientes de lealtad media.  
+- Los compradores más frecuentes tienen entre 36–45 años y una distribución de género equilibrada.  
+
+> ⚠️ **Nota Importante:**  
+> Los datos utilizados en este proyecto son **ficticios y simulados**, creados únicamente con fines de **práctica y demostración académica**.  
+> Por este motivo, los resultados del análisis **pueden carecer de consistencia** y no deben interpretarse como representativos de un caso real de negocio.
+
+---
+
+## 🔮 Trabajo Futuro
+
+- Modelo predictivo de segmentación de lealtad con machine learning.  
+- Análisis detallado por subcategorías de producto.  
+- Seguimiento del rendimiento de campañas y A/B testing.  
+- Recomendaciones para mejorar retención y personalización.  
+
+---
+
+### ⚠️ Limitaciones
+
+- El dataset contiene datos simulados/agrupados que pueden no reflejar fielmente el comportamiento real.  
+- Las métricas de engagement son auto-reportadas, no conductuales.  
+- Algunos campos tenían valores faltantes o ambiguos, lo que requirió generalización (ej: género o ubicación).  
+
+---
+
+⭐ *Gracias por visitar! Explora el dashboard y no dudes en compartir feedback o propuestas de colaboración.*  
+
+---
+
+## 📫 Contacto
+
+Para consultas o colaboraciones:  
+📧 [melinaluceroant@gmail.com]  
+📎 [https://www.linkedin.com/in/melina-lucero/]  
+
+---
+
+### 📚 Referencias
+
+- Dataset provisto por XYZ Ecommerce (o Kaggle, etc.)  
+- Lógica de tabla calendario en Power BI de la documentación oficial de Microsoft.  
+- Íconos de [Flaticon.com](https://www.flaticon.com)  
+
